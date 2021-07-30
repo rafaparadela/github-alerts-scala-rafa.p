@@ -1,0 +1,26 @@
+# Default ignored files
+/shelf/
+/workspace.xml
+
+### Scala IDE specific
+.cache-main
+.scala_dependencies
+.worksheet
+### Scala
+*.class
+*.log
+### SBT
+dist/*
+target/
+lib_managed/
+src_managed/
+project/boot/
+project/plugins/project/
+.history
+.cache
+.lib/
+.bsp
+### JetBrains
+.idea
+*.iws
+/out/
