@@ -15,6 +15,8 @@ object GithubalertsscalarafapRoutes {
     HttpRoutes.of[F] {
       case GET -> Root / "subscription" / user =>
          service.getSubscriptions(user).flatMap(Ok(_))
+      case POST -> Root / "subscription" / user =>
+         service.getSubscriptions(user).flatMap(Ok(_))
     }
   }
 }
