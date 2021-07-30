@@ -1,7 +1,6 @@
 package githubalerts
 
 import cats.effect.{ConcurrentEffect, Timer}
-import cats.implicits._
 import fs2.Stream
 import org.http4s.client.blaze.BlazeClientBuilder
 import org.http4s.implicits._
@@ -16,14 +15,11 @@ object GithubalertsscalarafapServer {
       client <- BlazeClientBuilder[F](global).stream
       helloWorldAlg = HelloWorld.impl[F]
       jokeAlg = Jokes.impl[F](client)
+      service = new SubscriptionService(helloWorldAlg, jokeAlg)
 
-      // Combine Service Routes into an HttpApp.
-      // Can also be done via a Router if you
-      // want to extract a segments not checked
-      // in the underlying routes.
+
       httpApp = (
-        GithubalertsscalarafapRoutes.helloWorldRoutes[F](helloWorldAlg) <+>
-        GithubalertsscalarafapRoutes.jokeRoutes[F](jokeAlg)
+        GithubalertsscalarafapRoutes.appRoutes[F](service)
       ).orNotFound
 
       // With Middlewares in place
