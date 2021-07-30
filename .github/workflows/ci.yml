@@ -30,10 +30,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Setup Scala
         uses: olafurpg/setup-scala@v10
-      - name: Setup Ruby
-        uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: .ruby-version
       - name: Setup yq
         run: sudo snap install yq
       - name: Run pre-conditions
